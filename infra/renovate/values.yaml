@@ -328,7 +328,7 @@ renovate:
   #           "repositories": ["username/repo", "orgname/repo"]
   #         }
 
-renovatePersonal:
+renovate-personal:
   global:
     # -- Additional labels to be set on all renovate resources
     commonLabels: {}
