@@ -433,7 +433,7 @@ renovate-personal:
         "autodiscover": true,
         "dryRun": null,
         "printConfig": false,
-        "autodiscoverFilter": ["durfy/*"],
+        "autodiscoverFilter": ["durfy/**"],
         "assignees": ["durp"]
       }
     # See https://docs.renovatebot.com/self-hosted-configuration
