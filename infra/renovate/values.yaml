@@ -430,11 +430,11 @@ renovate-personal:
       {
         "platform": "gitlab",
         "endpoint": "https://gitlab.durp.info/api/v4",
-        "autodiscover": "true",
-        "dryRun": false,
+        "autodiscover": true,
+        "dryRun": null,
         "printConfig": false,
         "autodiscoverFilter": ["durfy/*"],
-        "assignees": ["durp"],
+        "assignees": ["durp"]
       }
     # See https://docs.renovatebot.com/self-hosted-configuration
     # config: |
