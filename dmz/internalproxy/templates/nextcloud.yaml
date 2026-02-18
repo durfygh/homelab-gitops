@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
     - name: app
-      port: 7282
+      port: 11000
       protocol: TCP
-      targetPort: 7282
+      targetPort: 11000
   clusterIP: None
   type: ClusterIP
 
@@ -21,7 +21,7 @@ subsets:
       - ip: 192.168.21.200
     ports:
       - name: app
-        port: 7282
+        port: 11000
         protocol: TCP
 
 ---
@@ -39,7 +39,7 @@ spec:
         - name: nextcloud-secure-headers
       services:
         - name: nextcloud
-          port: 7282
+          port: 11000
           scheme: https
   tls:
     secretName: nextcloud-tls
