@@ -38,7 +38,7 @@ spec:
       services:
         - name: nextcloud
           port: 7282
-          scheme: http
+          scheme: https
   tls:
     secretName: nextcloud-tls
 
