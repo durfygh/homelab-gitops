@@ -35,6 +35,8 @@ spec:
   routes:
     - match: Host(`nextcloud.durp.info`) && PathPrefix(`/`)
       kind: Rule
+      middlewares:
+        - nextcloud-secure-headers
       services:
         - name: nextcloud
           port: 7282
@@ -66,3 +68,11 @@ metadata:
 spec:
   type: ExternalName
   externalName: durp.info
+
+---
+middlewares:
+  nextcloud-secure-headers:
+    headers:
+      hostsProxyHeaders:
+        - "X-Forwarded-Host"
+      referrerPolicy: "same-origin"
