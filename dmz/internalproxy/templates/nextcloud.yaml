@@ -36,7 +36,7 @@ spec:
     - match: Host(`nextcloud.durp.info`) && PathPrefix(`/`)
       kind: Rule
       middlewares:
-        - name: nextcloud-secure-headers
+        - name: nextcloud-chain
       services:
         - name: nextcloud
           port: 11000
@@ -79,3 +79,23 @@ spec:
     hostsProxyHeaders:
       - "X-Forwarded-Host"
     referrerPolicy: "same-origin"
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: https-redirect
+spec:
+  redirectScheme:
+    scheme: https
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: nextcloud-chain
+spec:
+  chain:
+    middlewares:
+      - name: https-redirect
+      - name: nextcloud-secure-headers
