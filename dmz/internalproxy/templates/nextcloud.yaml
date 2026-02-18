@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextcloud
+spec:
+  ports:
+    - name: app
+      port: 7282
+      protocol: TCP
+      targetPort: 7282
+  clusterIP: None
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: nextcloud
+subsets:
+  - addresses:
+      - ip: 192.168.21.200
+    ports:
+      - name: app
+        port: 7282
+        protocol: TCP
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nextcloud-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`nextcloud.durp.info`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: nextcloud
+          port: 7282
+          scheme: http
+  tls:
+    secretName: nextcloud-tls
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nextcloud-tls
+spec:
+  secretName: nextcloud-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "nextcloud.durp.info"
+  dnsNames:
+    - "nextcloud.durp.info"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nextcloud-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: nextcloud.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
