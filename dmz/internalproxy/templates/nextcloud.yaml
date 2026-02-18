@@ -70,9 +70,12 @@ spec:
   externalName: durp.info
 
 ---
-middlewares:
-  nextcloud-secure-headers:
-    headers:
-      hostsProxyHeaders:
-        - "X-Forwarded-Host"
-      referrerPolicy: "same-origin"
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: nextcloud-secure-headers
+spec:
+  headers:
+    hostsProxyHeaders:
+      - "X-Forwarded-Host"
+    referrerPolicy: "same-origin"
