@@ -10,7 +10,4 @@ dependencies:
   - name: renovate
     repository: https://docs.renovatebot.com/helm-charts
     version: 39.264.0
-  - name: renovate
-    repository: https://docs.renovatebot.com/helm-charts
-    version: 39.264.0
     alias: "renovate-personal"
