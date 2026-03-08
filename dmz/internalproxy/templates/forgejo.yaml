@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gitea
+  name: forgejo
 spec:
   ports:
     - name: app
@@ -16,7 +16,7 @@ spec:
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: gitea
+  name: forgejo
 subsets:
   - addresses:
       - ip: 192.168.21.200
@@ -30,43 +30,43 @@ subsets:
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: gitea-ingress
+  name: forgejo-ingress
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`gitea.durp.info`) && PathPrefix(`/`)
+    - match: Host(`forgejo.durp.info`) && PathPrefix(`/`)
       kind: Rule
       services:
-        - name: gitea
+        - name: forgejo
           port: 3000
           scheme: http
   tls:
-    secretName: gitea-tls
+    secretName: forgejo-tls
 
 ---
 
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: gitea-tls
+  name: forgejo-tls
 spec:
-  secretName: gitea-tls
+  secretName: forgejo-tls
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "gitea.durp.info"
+  commonName: "forgejo.durp.info"
   dnsNames:
-    - "gitea.durp.info"
+    - "forgejo.durp.info"
 
 ---
 
 kind: Service
 apiVersion: v1
 metadata:
-  name: gitea-external-dns
+  name: forgejo-external-dns
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: gitea.durp.info
+    external-dns.alpha.kubernetes.io/hostname: forgejo.durp.info
 spec:
   type: ExternalName
   externalName: durp.info
