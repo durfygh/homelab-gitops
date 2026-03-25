@@ -41,7 +41,6 @@ spec:
       services:
         - name: freshrss
           port: 8085
-          scheme: https
   tls:
     secretName: freshrss-tls
 
