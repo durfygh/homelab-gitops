@@ -2,7 +2,7 @@ portainer:
   replicaCount: 1
   image:
     repository: registry.durp.info/portainer/portainer-ce
-    tag: 2.33.5
+    tag: 2.39.1
     pullPolicy: Always
 
   imagePullSecrets: []
