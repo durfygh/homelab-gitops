@@ -55,6 +55,10 @@ spec:
     - protocol: TCP
       port: 443
       targetPort: 443
+    - name: app
+      port: 8267
+      protocol: TCP
+      targetPort: 8267
 
 ---
 
@@ -68,4 +72,7 @@ subsets:
     ports:
       - name: app
         port: 443
+        protocol: TCP
+      - name: app
+        port: 8267
         protocol: TCP
