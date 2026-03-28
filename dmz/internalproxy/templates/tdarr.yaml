@@ -1,32 +1,3 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: tdarr
-spec:
-  ports:
-  - name: app
-    port: 8267
-    protocol: TCP
-    targetPort: 8267
-  clusterIP: None
-  type: ClusterIP
-
----
-
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: tdarr
-subsets:
-- addresses:
-  - ip: 192.168.21.200
-  ports:
-  - name: app
-    port: 8267
-    protocol: TCP
-
----
-
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -45,7 +16,7 @@ spec:
       namespace: traefik  
     kind: Rule
     services:
-    - name: tdarr
+    - name: unraid
       port: 8267
       scheme: http
   tls:
