@@ -52,10 +52,11 @@ metadata:
   name: unraid
 spec:
   ports:
-    - protocol: TCP
+    - name: https
+      protocol: TCP
       port: 443
       targetPort: 443
-    - name: app
+    - name: tdarr
       port: 8267
       protocol: TCP
       targetPort: 8267
@@ -70,9 +71,9 @@ subsets:
   - addresses:
       - ip: 192.168.21.200
     ports:
-      - name: app
+      - name: https
         port: 443
         protocol: TCP
-      - name: app
+      - name: tdarr
         port: 8267
         protocol: TCP
