@@ -112,6 +112,10 @@ spec:
       port: 9768
       protocol: TCP
       targetPort: 9768
+    - name: smokeping
+      port: 81
+      protocol: TCP
+      targetPort: 81
 
 ---
 
@@ -167,6 +171,9 @@ subsets:
         protocol: TCP
       - name: s3
         port: 9768
+        protocol: TCP
+      - name: smokeping
+        port: 81
         protocol: TCP
 
 ---
