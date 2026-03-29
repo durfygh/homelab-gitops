@@ -16,7 +16,7 @@ spec:
           port: 443
           scheme: https
   tls:
-    secretName: argocd-tls
+    secretName: argocd-infra-tls
 
 ---
 
