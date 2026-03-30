@@ -38,7 +38,7 @@ spec:
         - name: ollama-basic-auth
       kind: Rule
       services:
-        - name: unraid
+        - name: ubuntu
           port: 11435
   tls:
     secretName: ollama-tls
