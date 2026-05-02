@@ -63,6 +63,9 @@ spec:
     - name: forgejo
       port: 3000
       protocol: TCP
+    - name: kuma
+      port: 3001
+      protocol: TCP
       targetPort: 3000
     - name: freshrss
       port: 8085
@@ -112,6 +115,9 @@ spec:
       port: 81
       protocol: TCP
       targetPort: 81
+    - name: gotify
+      port: 8070
+      protocol: TCP
 
 ---
 apiVersion: v1
