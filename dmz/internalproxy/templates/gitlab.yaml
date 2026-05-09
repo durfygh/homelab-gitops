@@ -97,7 +97,7 @@ spec:
           port: 5050
           scheme: http
   tls:
-    certResolver: letsencrypt
+    secretName: gitlab-images-tls
 
 ---
 apiVersion: cert-manager.io/v1
