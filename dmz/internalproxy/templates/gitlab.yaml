@@ -80,3 +80,47 @@ metadata:
 spec:
   type: ExternalName
   externalName: durp.info
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gitlab-registry
+  namespace: gitlab
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`images.durp.info`)
+      kind: Rule
+      services:
+        - name: unraid
+          port: 5050
+          scheme: http
+  tls:
+    certResolver: letsencrypt
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gitlab-images-tls
+spec:
+  secretName: gitlab-images-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "images.durp.info"
+  dnsNames:
+    - "images.durp.info"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gitlab-images-external-dns
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: images.durp.info
+spec:
+  type: ExternalName
+  externalName: durp.info
