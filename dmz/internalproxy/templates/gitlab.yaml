@@ -94,7 +94,7 @@ spec:
       kind: Rule
       services:
         - name: unraid
-          port: 5050
+          port: 5002
           scheme: http
   tls:
     secretName: gitlab-images-tls
