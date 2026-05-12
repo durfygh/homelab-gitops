@@ -52,7 +52,7 @@ authentik:
         enabled: false
     image:
       registry: registry.durp.info
-      repository: bitnami/redis
+      repository: bitnamilegacy/redis
       pullPolicy: Always
     architecture: standalone
     auth:
