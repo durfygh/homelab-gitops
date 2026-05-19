@@ -6,7 +6,6 @@ version: 0.0.1
 appVersion: 0.0.1
 
 dependencies:
-- name: vault
-  repository: https://helm.releases.hashicorp.com  
-  version: 0.30.0
-
+  - name: vault
+    repository: https://helm.releases.hashicorp.com
+    version: 0.32.0
